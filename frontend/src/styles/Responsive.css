@@ -1,0 +1,209 @@
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 280px;
+  }
+  
+  .sidebar.open ~ .content {
+    margin-left: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .topbar-title {
+    font-size: 1.5rem;
+  }
+  
+  .sidebar {
+    width: 280px; 
+    padding: 1.5rem;
+  }
+  
+  .sidebar.open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+    
+  .content {
+    margin-left: 0 !important;
+    padding: 1.5rem;
+  }
+  
+  .card {
+    padding: 2rem;
+  }
+  
+  .ledger-card {
+    padding: 2rem;
+  }
+  
+  .ledger-table {
+    font-size: 0.9rem;
+  }
+  
+  .ledger-table th,
+  .ledger-table td {
+    padding: 1rem;
+  }
+  
+  .consumer-name {
+    font-size: 1.6rem;
+  }
+  
+  .header h3 {
+    font-size: 1.5rem;
+  }
+
+  .ledger-header {
+    display: none;
+  }
+  
+  .ledger-row {
+    display: block;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+  
+  .ledger-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  .ledger-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(20, 184, 166, 0.1);
+    background: transparent;
+  }
+  
+  .ledger-cell:last-child {
+    border-bottom: none;
+  }
+  
+  .ledger-cell::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+  
+  .date-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .date-cell::before {
+    align-self: flex-start;
+  }
+  
+  .date-cell .date-text {
+    align-self: flex-end;
+  }
+  
+  .payment-status {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 2rem;
+    margin: 2rem 1rem;
+    border-radius: 20px;
+  }
+  
+  .login-title {
+    font-size: 1.8rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+  
+  .topbar-title {
+    font-size: 1.25rem;
+  }
+  
+  .content {
+    padding: 1rem;
+    margin-top: 4rem;
+  }
+  
+  .table-container {
+    max-height: 400px;
+    overflow-x: auto;
+  }
+  
+  .ledger-table {
+    min-width: 600px;
+  }
+  
+  .ledger-table th,
+  .ledger-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .menu-item {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+   
+  .sidebar {
+    width: 260px;
+  }
+  
+  /* Ledger Table Mobile */
+  .ledger-wrapper {
+    border-radius: 12px;
+    margin: 0 -0.5rem;
+  }
+  
+  .ledger-row {
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+  }
+  
+  .ledger-cell {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .ledger-cell::before {
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+  
+  .payment-status {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .no-data-message {
+    font-size: 1.1rem;
+    padding: 2rem 1rem;
+  }
+}
