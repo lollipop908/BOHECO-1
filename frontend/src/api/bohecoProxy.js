@@ -1,8 +1,25 @@
 const http = require('http');
 
 module.exports = (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins (or specify your domains)
+  // Define allowed origins
+  const allowedOrigins = [
+    'https://boheco-1.vercel.app',
+    'https://boheco-1-jndyqlql1-lollipop908s-projects.vercel.app', // Preview domain
+    // Add other preview domains as needed
+  ];
+
+  // Get the origin from the request headers
+  const origin = req.headers.origin;
+
+  // Check if the origin is allowed
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.status(403).json({ error: 'CORS policy: Origin not allowed' });
+    return;
+  }
+
+  // Set additional CORS headers
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -12,6 +29,7 @@ module.exports = (req, res) => {
     return;
   }
 
+  // Process the API request
   const { endpoint, acctNo, q } = req.query;
   let apiUrl;
 
@@ -34,7 +52,7 @@ module.exports = (req, res) => {
         const parsedData = JSON.parse(data);
         res.status(apiRes.statusCode).json(parsedData);
       } catch (err) {
-        res.status(500).json({ error: 'Failed to parse API response' });
+        res.status(500).json({ error: 'Failed to parse API response', details: err.message });
       }
     });
   }).on('error', (err) => {
