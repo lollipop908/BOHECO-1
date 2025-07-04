@@ -1,15 +1,12 @@
-// netlify/functions/proxy.js
 import fetch from "node-fetch";
 
 export async function handler(event) {
   const { endpoint, acctNo, q } = event.queryStringParameters;
 
-  console.log("📩 Incoming Request:", { endpoint, acctNo, q });
-
   if (!endpoint) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Missing 'endpoint' query parameter." }),
+      body: JSON.stringify({ error: "Missing 'endpoint' parameter." }),
     };
   }
 
@@ -26,33 +23,37 @@ export async function handler(event) {
     };
   }
 
-  console.log("🌐 Fetching from external API:", apiUrl);
+  console.log("🌐 Fetching:", apiUrl);
 
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
     const response = await fetch(apiUrl, {
       headers: {
         "User-Agent": "NetlifyProxy/1.0",
       },
+      signal: controller.signal,
     });
 
+    clearTimeout(timeout);
+
     const contentType = response.headers.get("content-type");
-    const body =
+    const data =
       contentType && contentType.includes("application/json")
         ? await response.json()
         : await response.text();
 
-    console.log("✅ Response received");
-
     return {
       statusCode: 200,
-      body: typeof body === "string" ? body : JSON.stringify(body),
+      body: typeof data === "string" ? data : JSON.stringify(data),
     };
   } catch (err) {
-    console.error("❌ Fetch failed:", err.message); // log full error to terminal
+    console.error("❌ Fetch error:", err.message);
     return {
-      statusCode: 500,
+      statusCode: 502,
       body: JSON.stringify({
-        error: "Proxy fetch failed",
+        error: "Failed to reach backend",
         details: err.message,
       }),
     };
