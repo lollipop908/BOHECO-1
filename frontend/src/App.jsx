@@ -22,8 +22,8 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const fetchData = async () => {
-    
     setLoading(true);
+    const cleanedAccountNumber = accountNumber.trim();
     const transactionUrl = `/.netlify/functions/proxy?endpoint=get-account-by-account-number&acctNo=${cleanedAccountNumber}`
     const accountUserUrl = `/.netlify/functions/proxy?endpoint=get-latest-bills&q=${cleanedAccountNumber}`
     try {
