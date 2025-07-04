@@ -22,17 +22,29 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const fetchData = async () => {
-    if (!accountNumber || accountNumber.length !== 10) {
-      alert("Please enter a valid 10-digit account number!");
-      return;
-    }
+    
     setLoading(true);
+    const transactionUrl = `/.netlify/functions/proxy?endpoint=get-account-by-account-number&acctNo=${cleanedAccountNumber}`
+    const accountUserUrl = `/.netlify/functions/proxy?endpoint=get-latest-bills&q=${cleanedAccountNumber}`
     try {
-      const user = await fetchAccountDetails(accountNumber);
-      const transactions = await fetchBillingHistory(accountNumber);
+      const [transactionRes, userRes] = await Promise.all([
+        fetch(transactionUrl),
+        fetch(accountUserUrl),
+      ]);
 
-      console.log("user:", user);
-      console.log("transactions:", transactions);
+      if (!transactionRes.ok || !userRes.ok) {
+        throw new Error("One of the requests failed");
+      }
+
+      const transactionData = await transactionRes.json();
+      const userInfo = await userRes.json();
+
+      if (userInfo.error || transactionData.error) {
+        throw new Error(userInfo.error || transactionData.error);
+      }
+
+      setUserData(userInfo);
+      setTransactionDataResult(transactionData);
       setUser(user);
       setTransaction(transactions);
       setShowDashboard(true);
