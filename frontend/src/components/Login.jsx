@@ -1,5 +1,6 @@
 function Login({
-  accountNumber,
+  cleanedAccountNumber,
+  accountNumber = cleanedAccountNumber,
   setAccount,
   isLoading,
   fetchData,
