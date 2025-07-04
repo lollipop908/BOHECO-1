@@ -8,12 +8,12 @@ function Login({
   return (
     <div className="login-container">
       <div className="login-title-container">
-        <h3 className="login-title">BOHECO I</h3>
         <img
           src="bohecologo.png"
           alt="Company Logo"
           className="login-logo-left"
         />
+        <h3 className="login-title">BOHECO I</h3>
       </div>
       <input
         type="text"

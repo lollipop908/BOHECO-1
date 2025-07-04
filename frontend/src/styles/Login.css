@@ -67,15 +67,22 @@
 }
 
 .login-title-container {
-  position: relative;
-  margin: 0 0 2rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  line-height: 1;
 }
 
+
 .login-title {
-  margin: 0;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
+  margin: 0;
+  padding-top: 0.1rem;
+  white-space: nowrap;
+  padding-top: 0.1rem;
   background: linear-gradient(135deg, 
     #5eead4,  
     #2dd4bf,  
@@ -88,13 +95,13 @@
 }
 
 .login-logo-left {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
 }
+
+
 
 .login-container input {
   padding: 1.25rem 1.5rem;
