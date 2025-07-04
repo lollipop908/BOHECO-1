@@ -1,18 +1,11 @@
 const http = require('http');
 
 module.exports = (req, res) => {
-  // Define allowed origins
-  const allowedOrigins = [
-    'https://boheco-1.vercel.app',
-    'https://boheco-1-jndyqlql1-lollipop908s-projects.vercel.app', // Preview domain
-    // Add other preview domains as needed
-  ];
-
   // Get the origin from the request headers
   const origin = req.headers.origin;
 
-  // Check if the origin is allowed
-  if (allowedOrigins.includes(origin)) {
+  // Allow origins matching *.vercel.app
+  if (origin && origin.endsWith('.vercel.app')) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   } else {
     res.status(403).json({ error: 'CORS policy: Origin not allowed' });

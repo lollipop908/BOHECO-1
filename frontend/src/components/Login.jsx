@@ -9,7 +9,7 @@ function Login({
     <div className="login-container">
       <div className="login-title-container">
         <img
-          src="bohecologo.png"
+          src="/bohecologo.png"
           alt="Company Logo"
           className="login-logo-left"
         />
