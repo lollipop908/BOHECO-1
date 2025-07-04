@@ -8,7 +8,7 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: 
     linear-gradient(rgba(20, 184, 166, 0.7), rgba(20, 184, 166, 0.7)),
-    url('coverboheco.jpg');
+    url('/assets/coverboheco.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
