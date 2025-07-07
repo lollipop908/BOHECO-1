@@ -10,7 +10,6 @@ import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
 import AccountInfo from "./components/AccountInfo";
 import LedgerTable from "./components/LedgerTable";
-import { fetchAccountDetails, fetchBillingHistory } from "./api/bohecoApi";
 
 function App() {
   const [accountNumber, setAccount] = useState("");
